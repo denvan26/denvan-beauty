@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+  --color-pink-50: #fdf2f8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Carousel animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.4s ease-out;
+}
+
+/* Product image placeholder gradients */
+.product-gradient-skincare {
+  background: linear-gradient(135deg, #fce4ec, #f8bbd0, #f48fb1);
+}
+.product-gradient-haircare {
+  background: linear-gradient(135deg, #e8eaf6, #c5cae9, #9fa8da);
+}
+.product-gradient-makeup {
+  background: linear-gradient(135deg, #fce4ec, #f3e5f5, #e1bee7);
+}
+.product-gradient-body-care {
+  background: linear-gradient(135deg, #e0f2f1, #b2dfdb, #80cbc4);
+}
+.product-gradient-accessories {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2, #ffcc80);
 }
