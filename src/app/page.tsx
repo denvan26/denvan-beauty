@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
+import RecentlyViewed from "@/components/RecentlyViewed";
 
 const heroSlides = [
   {
@@ -235,6 +236,13 @@ export default function Home() {
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Recently Viewed */}
+      <section className="py-3 sm:py-4 bg-white">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4">
+          <RecentlyViewed />
         </div>
       </section>
 

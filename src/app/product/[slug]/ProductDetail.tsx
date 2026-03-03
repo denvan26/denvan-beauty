@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useCart } from "@/lib/CartContext";
 import ProductCard from "@/components/ProductCard";
+import RecentlyViewed from "@/components/RecentlyViewed";
 import { getProductBySlug, products, reviews } from "@/data/products";
 
 export default function ProductDetail({ slug }: { slug: string }) {
@@ -13,6 +14,9 @@ export default function ProductDetail({ slug }: { slug: string }) {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<"description" | "ingredients" | "reviews">("description");
   const [imgError, setImgError] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [zoomPos, setZoomPos] = useState({ x: 0, y: 0, show: false });
+  const imgContainerRef = useRef<HTMLDivElement>(null);
 
   if (!product) {
     return (
@@ -25,14 +29,39 @@ export default function ProductDetail({ slug }: { slug: string }) {
     );
   }
 
+  // Track recently viewed
+  useEffect(() => {
+    if (!product) return;
+    try {
+      const stored = JSON.parse(localStorage.getItem("denvan-recently-viewed") || "[]");
+      const updated = [product.id, ...stored.filter((id: string) => id !== product.id)].slice(0, 10);
+      localStorage.setItem("denvan-recently-viewed", JSON.stringify(updated));
+    } catch { /* ignore */ }
+  }, [product]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!imgContainerRef.current) return;
+    const rect = imgContainerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setZoomPos({ x, y, show: true });
+  };
+
+  const handleMouseLeave = () => {
+    setZoomPos((prev) => ({ ...prev, show: false }));
+  };
+
   const relatedProducts = products
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 6);
 
   const productReviews = reviews.slice(0, 4);
 
-  const viewingCount = Math.floor(Math.random() * 40) + 15;
-  const soldCount = Math.floor(Math.random() * 200) + 50;
+  // Deterministic social proof based on product id
+  const idHash = product.id.split("").reduce((a: number, c: string) => a + c.charCodeAt(0), 0);
+  const viewingCount = (idHash % 40) + 15;
+  const soldCount = (idHash % 200) + 50;
+  const stockLeft = (idHash % 8) + 2;
 
   return (
     <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-4 sm:py-8">
@@ -53,13 +82,19 @@ export default function ProductDetail({ slug }: { slug: string }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 mb-8 sm:mb-16">
         {/* Images */}
         <div>
-          <div className="relative aspect-square bg-gray-100 overflow-hidden">
+          <div
+            ref={imgContainerRef}
+            className="relative aspect-square bg-gray-100 overflow-hidden cursor-crosshair"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
             {!imgError ? (
               <Image
-                src={product.images[0]}
+                src={product.images[selectedImage] || product.images[0]}
                 alt={product.name}
                 fill
-                className="object-cover"
+                className={`object-cover transition-transform duration-200 ${zoomPos.show ? "scale-150" : "scale-100"}`}
+                style={zoomPos.show ? { transformOrigin: `${zoomPos.x}% ${zoomPos.y}%` } : undefined}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
                 onError={() => setImgError(true)}
@@ -70,16 +105,43 @@ export default function ProductDetail({ slug }: { slug: string }) {
               </div>
             )}
             {product.badge && (
-              <span className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-red-600 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-4 py-1 sm:py-1.5">
+              <span className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-red-600 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-4 py-1 sm:py-1.5 z-10">
                 {product.badge}
               </span>
             )}
             {product.sameDayDelivery && (
-              <span className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-green-500 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-1 sm:py-1.5">
+              <span className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-green-500 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-1 sm:py-1.5 z-10">
                 SAME-DAY
               </span>
             )}
+            {zoomPos.show && (
+              <div className="absolute bottom-2 left-2 bg-black/60 text-white text-[10px] px-2 py-1 rounded pointer-events-none z-10">
+                Hover to zoom
+              </div>
+            )}
           </div>
+          {/* Thumbnail gallery */}
+          {product.images.length > 1 && (
+            <div className="flex gap-1.5 sm:gap-2 mt-2 sm:mt-3 overflow-x-auto scrollbar-hide">
+              {product.images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => { setSelectedImage(i); setImgError(false); }}
+                  className={`relative w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-gray-100 overflow-hidden border-2 ${
+                    selectedImage === i ? "border-red-600" : "border-transparent"
+                  }`}
+                >
+                  <Image
+                    src={img}
+                    alt={`${product.name} view ${i + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="64px"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Product Info */}
@@ -89,11 +151,21 @@ export default function ProductDetail({ slug }: { slug: string }) {
           </h1>
 
           {/* Social proof */}
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 sm:gap-3 text-[10px] sm:text-xs text-gray-500 mb-3">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 sm:gap-3 text-[10px] sm:text-xs text-gray-500 mb-2">
             <span>{product.rating} ({product.reviewCount} reviews)</span>
             <span className="text-red-600 font-medium">{viewingCount} viewing</span>
             <span className="text-orange-600 font-medium">{soldCount} sold in 24h</span>
           </div>
+
+          {/* Stock warning */}
+          {stockLeft <= 5 && (
+            <div className="flex items-center gap-1.5 mb-3 text-orange-600">
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+              <span className="text-xs sm:text-sm font-semibold">Only {stockLeft} left in stock — order soon!</span>
+            </div>
+          )}
 
           {/* Price */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
@@ -285,6 +357,11 @@ export default function ProductDetail({ slug }: { slug: string }) {
           </div>
         </div>
       )}
+
+      {/* Recently Viewed */}
+      <div className="mb-8 sm:mb-16">
+        <RecentlyViewed excludeId={product.id} />
+      </div>
     </div>
   );
 }
