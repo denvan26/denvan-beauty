@@ -3,6 +3,7 @@ import { newProducts } from "./new-products";
 import { trendingProducts } from "./trending-products";
 import { watchesProducts, wigsProducts } from "./watches-wigs-products";
 import { shoesProducts, clothesProducts } from "./shoes-clothes-products";
+import { luxuryClothes } from "./luxury-clothes";
 
 const baseProducts: Product[] = [
   // ==================== SKINCARE ====================
@@ -1039,7 +1040,7 @@ const baseProducts: Product[] = [
   },
 ];
 
-export const products: Product[] = [...baseProducts, ...newProducts, ...trendingProducts, ...watchesProducts, ...wigsProducts, ...shoesProducts, ...clothesProducts];
+export const products: Product[] = [...baseProducts, ...newProducts, ...trendingProducts, ...watchesProducts, ...wigsProducts, ...shoesProducts, ...clothesProducts, ...luxuryClothes];
 
 export const categories = [
   {
@@ -1112,7 +1113,7 @@ export const categories = [
     slug: "clothes",
     description: "Dresses, tops, pants & sets",
     image: "/images/categories/clothes.svg",
-    productCount: 30,
+    productCount: 65,
   },
 ];
 

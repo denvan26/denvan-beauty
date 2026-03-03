@@ -8,7 +8,7 @@ import { categories, reviews } from "@/data/products";
 const heroSlides = [
   {
     title: "Your Beauty, Your Rules",
-    subtitle: "400+ premium products across skincare, makeup, shoes, clothes & more — all at prices you'll love",
+    subtitle: "450+ premium products across skincare, makeup, shoes, clothes & more — all at prices you'll love",
     cta: "Shop Now",
     link: "/shop",
     bg: "from-pink-100 via-pink-50 to-white",
@@ -338,7 +338,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { num: "400+", label: "Products" },
+              { num: "450+", label: "Products" },
               { num: "15K+", label: "Happy Customers" },
               { num: "4.8", label: "Avg Rating" },
               { num: "2-4hr", label: "Same-Day Delivery" },
@@ -432,7 +432,7 @@ export default function Home() {
             Ready to Glow?
           </h2>
           <p className="text-pink-100 text-lg mb-8 max-w-xl mx-auto">
-            Discover 400+ affordable, cruelty-free beauty products that actually work. Free shipping on orders over $50.
+            Discover 450+ affordable, cruelty-free beauty products that actually work. Free shipping on orders over $50.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
