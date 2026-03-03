@@ -12,7 +12,7 @@ function ShopContent() {
   const sortParam = searchParams.get("sort") || "";
 
   const [selectedCategory, setSelectedCategory] = useState(categoryParam);
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 50]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 100]);
   const [sortBy, setSortBy] = useState(sortParam || "featured");
   const [showFilters, setShowFilters] = useState(false);
 
@@ -126,11 +126,11 @@ function ShopContent() {
             </h3>
             <div className="space-y-2">
               {[
-                { label: "All Prices", range: [0, 50] as [number, number] },
+                { label: "All Prices", range: [0, 100] as [number, number] },
                 { label: "Under $10", range: [0, 10] as [number, number] },
                 { label: "$10 - $20", range: [10, 20] as [number, number] },
                 { label: "$20 - $30", range: [20, 30] as [number, number] },
-                { label: "Over $30", range: [30, 50] as [number, number] },
+                { label: "Over $30", range: [30, 100] as [number, number] },
               ].map((option) => (
                 <button
                   key={option.label}
@@ -205,7 +205,7 @@ function ShopContent() {
               <button
                 onClick={() => {
                   setSelectedCategory("");
-                  setPriceRange([0, 50]);
+                  setPriceRange([0, 100]);
                   setSortBy("featured");
                 }}
                 className="text-pink-500 font-semibold hover:text-pink-600"

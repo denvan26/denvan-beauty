@@ -1,6 +1,7 @@
 import { Product } from "@/types";
+import { newProducts } from "./new-products";
 
-export const products: Product[] = [
+const baseProducts: Product[] = [
   // ==================== SKINCARE ====================
   {
     id: "sk-001",
@@ -1035,6 +1036,8 @@ export const products: Product[] = [
   },
 ];
 
+export const products: Product[] = [...baseProducts, ...newProducts];
+
 export const categories = [
   {
     id: "skincare",
@@ -1042,7 +1045,7 @@ export const categories = [
     slug: "skincare",
     description: "Cleansers, serums, moisturizers & more",
     image: "/images/categories/skincare.svg",
-    productCount: 10,
+    productCount: 52,
   },
   {
     id: "haircare",
@@ -1050,7 +1053,7 @@ export const categories = [
     slug: "haircare",
     description: "Shampoos, oils, styling & protective care",
     image: "/images/categories/haircare.svg",
-    productCount: 10,
+    productCount: 52,
   },
   {
     id: "makeup",
@@ -1058,7 +1061,7 @@ export const categories = [
     slug: "makeup",
     description: "Foundation, lips, eyes & brush sets",
     image: "/images/categories/makeup.svg",
-    productCount: 10,
+    productCount: 52,
   },
   {
     id: "body-care",
@@ -1066,7 +1069,7 @@ export const categories = [
     slug: "body-care",
     description: "Lotions, scrubs, mists & deodorant",
     image: "/images/categories/bodycare.svg",
-    productCount: 6,
+    productCount: 39,
   },
   {
     id: "accessories",
@@ -1074,7 +1077,7 @@ export const categories = [
     slug: "accessories",
     description: "Tools, organizers, clips & sponges",
     image: "/images/categories/accessories.svg",
-    productCount: 6,
+    productCount: 47,
   },
 ];
 
