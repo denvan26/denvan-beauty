@@ -13,19 +13,6 @@ const dealTexts = [
   "Same-Day Delivery Available",
 ];
 
-const categoryLinks = [
-  { label: "ALL", href: "/shop" },
-  { label: "Skincare", href: "/shop?category=skincare" },
-  { label: "Haircare", href: "/shop?category=haircare" },
-  { label: "Makeup", href: "/shop?category=makeup" },
-  { label: "Body Care", href: "/shop?category=body-care" },
-  { label: "Accessories", href: "/shop?category=accessories" },
-  { label: "Watches", href: "/shop?category=watches" },
-  { label: "Wigs", href: "/shop?category=wigs" },
-  { label: "Shoes", href: "/shop?category=shoes" },
-  { label: "Clothes", href: "/shop?category=clothes" },
-  { label: "SALE", href: "/shop?sort=price-low" },
-];
 
 export default function Header() {
   const { totalItems, isCartOpen, setIsCartOpen } = useCart();
@@ -132,25 +119,6 @@ export default function Header() {
                   )}
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Category nav - inside sticky header */}
-        <div className="border-b border-gray-100 bg-white">
-          <div className="max-w-7xl mx-auto px-1 sm:px-4 lg:px-8">
-            <div className="flex items-center overflow-x-auto scrollbar-hide -mx-1">
-              {categoryLinks.map((cat) => (
-                <Link
-                  key={cat.label}
-                  href={cat.href}
-                  className={`flex-shrink-0 px-2.5 sm:px-3 py-2.5 sm:py-2 text-[11px] sm:text-xs font-medium transition-colors whitespace-nowrap active:bg-gray-100 hover:text-red-600 ${
-                    cat.label === "SALE" ? "text-red-600 font-bold" : "text-gray-600"
-                  }`}
-                >
-                  {cat.label}
-                </Link>
-              ))}
             </div>
           </div>
         </div>
