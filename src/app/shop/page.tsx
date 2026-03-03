@@ -19,17 +19,16 @@ function ShopContent() {
   const [searchQuery] = useState(searchParam);
 
   const priceFilters = [
-    { label: "All Prices", range: [0, 100] as [number, number] },
-    { label: "Under $10", range: [0, 10] as [number, number] },
-    { label: "$10-$20", range: [10, 20] as [number, number] },
-    { label: "$20-$30", range: [20, 30] as [number, number] },
+    { label: "All", range: [0, 100] as [number, number] },
+    { label: "<$10", range: [0, 10] as [number, number] },
+    { label: "$10-20", range: [10, 20] as [number, number] },
+    { label: "$20-30", range: [20, 30] as [number, number] },
     { label: "$30+", range: [30, 100] as [number, number] },
   ];
 
   const filtered = useMemo(() => {
     let result = [...products];
 
-    // Search filter
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       result = result.filter(
@@ -48,7 +47,6 @@ function ShopContent() {
       (p) => p.price >= priceRange[0] && p.price <= priceRange[1]
     );
 
-    // Quick filters
     if (quickFilter === "sale") {
       result = result.filter((p) => p.originalPrice);
     }
@@ -91,13 +89,13 @@ function ShopContent() {
   return (
     <div>
       {/* Sticky horizontal filter bar */}
-      <div className="sticky top-12 z-40 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div className="sticky top-[76px] sm:top-[84px] z-30 bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           {/* Category chips */}
-          <div className="flex items-center gap-0 overflow-x-auto scrollbar-hide py-2">
+          <div className="flex items-center gap-0 overflow-x-auto scrollbar-hide py-1.5 sm:py-2">
             <button
               onClick={() => setSelectedCategory("")}
-              className={`flex-shrink-0 px-3 py-1.5 text-xs font-medium rounded-full mr-1.5 transition-colors ${
+              className={`flex-shrink-0 px-2.5 py-1.5 sm:px-3 text-[11px] sm:text-xs font-medium rounded-full mr-1 transition-colors ${
                 !selectedCategory
                   ? "bg-black text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -109,7 +107,7 @@ function ShopContent() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.slug)}
-                className={`flex-shrink-0 px-3 py-1.5 text-xs font-medium rounded-full mr-1.5 transition-colors ${
+                className={`flex-shrink-0 px-2.5 py-1.5 sm:px-3 text-[11px] sm:text-xs font-medium rounded-full mr-1 transition-colors ${
                   selectedCategory === cat.slug
                     ? "bg-black text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -121,13 +119,13 @@ function ShopContent() {
           </div>
 
           {/* Quick filter chips + sort */}
-          <div className="flex items-center justify-between gap-2 pb-2">
-            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
+          <div className="flex items-center justify-between gap-1.5 pb-1.5 sm:pb-2">
+            <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto scrollbar-hide">
               {priceFilters.map((pf) => (
                 <button
                   key={pf.label}
                   onClick={() => setPriceRange(pf.range)}
-                  className={`flex-shrink-0 px-2.5 py-1 text-[11px] font-medium rounded-full border transition-colors ${
+                  className={`flex-shrink-0 px-2 py-1 sm:px-2.5 text-[10px] sm:text-[11px] font-medium rounded-full border transition-colors ${
                     priceRange[0] === pf.range[0] && priceRange[1] === pf.range[1]
                       ? "border-red-600 text-red-600 bg-red-50"
                       : "border-gray-200 text-gray-500 hover:border-gray-300"
@@ -138,17 +136,17 @@ function ShopContent() {
               ))}
               <button
                 onClick={() => setQuickFilter(quickFilter === "sale" ? "" : "sale")}
-                className={`flex-shrink-0 px-2.5 py-1 text-[11px] font-medium rounded-full border transition-colors ${
+                className={`flex-shrink-0 px-2 py-1 sm:px-2.5 text-[10px] sm:text-[11px] font-medium rounded-full border transition-colors ${
                   quickFilter === "sale"
                     ? "border-red-600 text-red-600 bg-red-50"
                     : "border-gray-200 text-gray-500 hover:border-gray-300"
                 }`}
               >
-                On Sale
+                Sale
               </button>
               <button
                 onClick={() => setQuickFilter(quickFilter === "new" ? "" : "new")}
-                className={`flex-shrink-0 px-2.5 py-1 text-[11px] font-medium rounded-full border transition-colors ${
+                className={`flex-shrink-0 px-2 py-1 sm:px-2.5 text-[10px] sm:text-[11px] font-medium rounded-full border transition-colors ${
                   quickFilter === "new"
                     ? "border-red-600 text-red-600 bg-red-50"
                     : "border-gray-200 text-gray-500 hover:border-gray-300"
@@ -160,22 +158,22 @@ function ShopContent() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="flex-shrink-0 text-[11px] border border-gray-200 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-red-500 bg-white"
+              className="flex-shrink-0 text-[10px] sm:text-[11px] border border-gray-200 rounded px-1.5 sm:px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-red-500 bg-white"
             >
               <option value="featured">Featured</option>
-              <option value="popular">Most Popular</option>
-              <option value="rating">Highest Rated</option>
+              <option value="popular">Popular</option>
+              <option value="rating">Top Rated</option>
               <option value="newest">Newest</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
+              <option value="price-low">Price: Low</option>
+              <option value="price-high">Price: High</option>
             </select>
           </div>
         </div>
       </div>
 
       {/* Results count */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-3 pb-1">
-        <p className="text-xs text-gray-500">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 pt-2 sm:pt-3 pb-1">
+        <p className="text-[10px] sm:text-xs text-gray-500">
           {searchQuery && (
             <span>Results for &ldquo;{searchQuery}&rdquo; &middot; </span>
           )}
@@ -184,25 +182,25 @@ function ShopContent() {
       </div>
 
       {/* Product Grid */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pb-8 pt-2">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 pb-8 pt-1 sm:pt-2">
         {filtered.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-1 sm:gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-0.5 sm:gap-1 md:gap-2">
             {filtered.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         ) : (
-          <div className="text-center py-20">
-            <svg className="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="text-center py-16 sm:py-20">
+            <svg className="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-gray-300 mb-3 sm:mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <h3 className="text-lg font-semibold mb-2">No products found</h3>
-            <p className="text-gray-500 mb-4">
-              Try adjusting your filters to find what you&apos;re looking for.
+            <h3 className="text-base sm:text-lg font-semibold mb-2">No products found</h3>
+            <p className="text-gray-500 text-sm mb-4">
+              Try adjusting your filters.
             </p>
             <button
               onClick={clearAll}
-              className="text-red-600 font-semibold hover:text-red-700"
+              className="text-red-600 font-semibold hover:text-red-700 text-sm"
             >
               Clear all filters
             </button>
@@ -215,7 +213,7 @@ function ShopContent() {
 
 export default function ShopPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-sm text-gray-400">Loading...</div>}>
       <ShopContent />
     </Suspense>
   );

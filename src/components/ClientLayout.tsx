@@ -9,7 +9,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <CartProvider>
       <Header />
-      <main className="min-h-screen pb-16 lg:pb-0">{children}</main>
+      <main className="min-h-screen pb-14 lg:pb-0">{children}</main>
       <Footer />
       <BottomNav />
     </CartProvider>

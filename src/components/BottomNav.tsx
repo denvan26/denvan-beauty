@@ -36,7 +36,7 @@ export default function BottomNav() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
           {totalItems > 0 && (
-            <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[9px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
               {totalItems}
             </span>
           )}
@@ -56,19 +56,19 @@ export default function BottomNav() {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 lg:hidden" style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
-      <div className="flex items-center justify-around h-14">
+      <div className="flex items-stretch justify-around h-14">
         {tabs.map((tab) => {
           const isActive = tab.href === "/" ? pathname === "/" : pathname.startsWith(tab.href);
           return (
             <Link
               key={tab.href}
               href={tab.href}
-              className={`flex flex-col items-center justify-center gap-0.5 flex-1 h-full ${
+              className={`flex flex-col items-center justify-center gap-0.5 flex-1 min-w-[64px] ${
                 isActive ? "text-red-600" : "text-gray-400"
               }`}
             >
               {tab.icon}
-              <span className="text-[10px] font-medium">{tab.label}</span>
+              <span className="text-[10px] font-medium leading-none">{tab.label}</span>
             </Link>
           );
         })}

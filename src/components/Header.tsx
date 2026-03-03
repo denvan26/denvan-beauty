@@ -60,19 +60,19 @@ export default function Header() {
   return (
     <>
       {/* Tier 1: Deal text rotation */}
-      <div className="bg-gray-900 text-white text-center text-[11px] py-1.5 px-4 font-medium tracking-wide">
+      <div className="bg-gray-900 text-white text-center text-[10px] sm:text-[11px] py-1 sm:py-1.5 px-3 font-medium tracking-wide">
         <span key={dealIndex} className="animate-fade-in inline-block">
           {dealTexts[dealIndex]}
         </span>
       </div>
 
       {/* Tier 2: Main bar (sticky) */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-12 gap-3">
+      <header className="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+          <div className="flex items-center justify-between h-11 sm:h-12 gap-2 sm:gap-3">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
-              <span className="text-lg font-bold tracking-tight text-black">
+              <span className="text-base sm:text-lg font-bold tracking-tight text-black">
                 DENVAN<span className="text-red-500">.</span>
               </span>
             </Link>
@@ -102,7 +102,7 @@ export default function Header() {
             </form>
 
             {/* Right actions */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
               {/* Mobile search icon */}
               <button
                 onClick={() => setSearchOpen(true)}
@@ -124,7 +124,7 @@ export default function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
                 {totalItems > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 bg-red-600 text-white text-[10px] font-bold rounded-full w-4.5 h-4.5 min-w-[18px] min-h-[18px] flex items-center justify-center">
+                  <span className="absolute -top-0.5 -right-0.5 bg-red-600 text-white text-[9px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
                     {totalItems}
                   </span>
                 )}
@@ -135,13 +135,13 @@ export default function Header() {
 
         {/* Tier 3: Category nav */}
         <div className="border-t border-gray-100">
-          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-1 sm:px-4 lg:px-8">
             <div className="flex items-center gap-0 overflow-x-auto scrollbar-hide">
               {categoryLinks.map((cat) => (
                 <Link
                   key={cat.label}
                   href={cat.href}
-                  className={`flex-shrink-0 px-3 py-2 text-xs font-medium transition-colors whitespace-nowrap hover:text-red-600 ${
+                  className={`flex-shrink-0 px-2 py-1.5 sm:px-3 sm:py-2 text-[11px] sm:text-xs font-medium transition-colors whitespace-nowrap hover:text-red-600 ${
                     cat.label === "SALE" ? "text-red-600 font-bold" : "text-gray-600"
                   }`}
                 >
@@ -156,12 +156,13 @@ export default function Header() {
       {/* Mobile search overlay */}
       {searchOpen && (
         <div className="fixed inset-0 bg-white z-[60] sm:hidden">
-          <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200">
+          <div className="flex items-center gap-2 px-3 py-3 border-b border-gray-200">
             <button
               onClick={() => setSearchOpen(false)}
-              className="p-1 text-gray-500"
+              className="p-1.5 text-gray-500"
+              aria-label="Close search"
             >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
@@ -172,7 +173,7 @@ export default function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search products..."
-                className="w-full px-4 py-2.5 bg-gray-100 rounded-full text-sm focus:outline-none"
+                className="w-full px-3 py-2.5 bg-gray-100 rounded-full text-sm focus:outline-none"
               />
             </form>
           </div>
