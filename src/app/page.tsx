@@ -116,17 +116,17 @@ export default function Home() {
       {/* 3. Circular category icons */}
       <section className="py-3 sm:py-4 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-2 sm:px-4">
-          <div className="flex items-center gap-3 sm:gap-5 overflow-x-auto scrollbar-hide pb-1">
+          <div className="flex items-center gap-4 sm:gap-5 overflow-x-auto scrollbar-hide pb-1 px-1">
             {categoryIcons.map((cat) => (
               <Link
                 key={cat.slug}
                 href={`/shop?category=${cat.slug}`}
-                className="flex flex-col items-center gap-0.5 sm:gap-1 flex-shrink-0"
+                className="flex flex-col items-center gap-1 flex-shrink-0 active:opacity-70"
               >
-                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-gray-100 flex items-center justify-center text-lg sm:text-xl hover:bg-red-50 transition-colors">
+                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-gray-100 flex items-center justify-center text-xl sm:text-2xl hover:bg-red-50 active:bg-red-100 transition-colors" style={{ width: '52px', height: '52px' }}>
                   {cat.emoji}
                 </div>
-                <span className="text-[9px] sm:text-[10px] text-gray-600 font-medium whitespace-nowrap">{cat.label}</span>
+                <span className="text-[10px] sm:text-[11px] text-gray-600 font-medium whitespace-nowrap">{cat.label}</span>
               </Link>
             ))}
           </div>

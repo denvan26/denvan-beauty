@@ -88,17 +88,17 @@ function ShopContent() {
 
   return (
     <div>
-      {/* Sticky horizontal filter bar */}
-      <div className="sticky top-[76px] sm:top-[84px] z-30 bg-white border-b border-gray-200">
+      {/* Horizontal filter bar - not sticky to avoid overlap issues */}
+      <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           {/* Category chips */}
-          <div className="flex items-center gap-0 overflow-x-auto scrollbar-hide py-1.5 sm:py-2">
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide py-2 sm:py-2.5">
             <button
               onClick={() => setSelectedCategory("")}
-              className={`flex-shrink-0 px-2.5 py-1.5 sm:px-3 text-[11px] sm:text-xs font-medium rounded-full mr-1 transition-colors ${
+              className={`flex-shrink-0 px-3 py-2 text-xs sm:text-sm font-medium rounded-full transition-colors active:scale-95 ${
                 !selectedCategory
                   ? "bg-black text-white"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200 active:bg-gray-300"
               }`}
             >
               All
@@ -107,10 +107,10 @@ function ShopContent() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.slug)}
-                className={`flex-shrink-0 px-2.5 py-1.5 sm:px-3 text-[11px] sm:text-xs font-medium rounded-full mr-1 transition-colors ${
+                className={`flex-shrink-0 px-3 py-2 text-xs sm:text-sm font-medium rounded-full transition-colors active:scale-95 ${
                   selectedCategory === cat.slug
                     ? "bg-black text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200 active:bg-gray-300"
                 }`}
               >
                 {cat.name}
@@ -119,13 +119,13 @@ function ShopContent() {
           </div>
 
           {/* Quick filter chips + sort */}
-          <div className="flex items-center justify-between gap-1.5 pb-1.5 sm:pb-2">
-            <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto scrollbar-hide">
+          <div className="flex items-center justify-between gap-2 pb-2 sm:pb-2.5">
+            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
               {priceFilters.map((pf) => (
                 <button
                   key={pf.label}
                   onClick={() => setPriceRange(pf.range)}
-                  className={`flex-shrink-0 px-2 py-1 sm:px-2.5 text-[10px] sm:text-[11px] font-medium rounded-full border transition-colors ${
+                  className={`flex-shrink-0 px-2.5 py-1.5 text-[11px] sm:text-xs font-medium rounded-full border transition-colors active:scale-95 ${
                     priceRange[0] === pf.range[0] && priceRange[1] === pf.range[1]
                       ? "border-red-600 text-red-600 bg-red-50"
                       : "border-gray-200 text-gray-500 hover:border-gray-300"
@@ -136,7 +136,7 @@ function ShopContent() {
               ))}
               <button
                 onClick={() => setQuickFilter(quickFilter === "sale" ? "" : "sale")}
-                className={`flex-shrink-0 px-2 py-1 sm:px-2.5 text-[10px] sm:text-[11px] font-medium rounded-full border transition-colors ${
+                className={`flex-shrink-0 px-2.5 py-1.5 text-[11px] sm:text-xs font-medium rounded-full border transition-colors active:scale-95 ${
                   quickFilter === "sale"
                     ? "border-red-600 text-red-600 bg-red-50"
                     : "border-gray-200 text-gray-500 hover:border-gray-300"
@@ -146,7 +146,7 @@ function ShopContent() {
               </button>
               <button
                 onClick={() => setQuickFilter(quickFilter === "new" ? "" : "new")}
-                className={`flex-shrink-0 px-2 py-1 sm:px-2.5 text-[10px] sm:text-[11px] font-medium rounded-full border transition-colors ${
+                className={`flex-shrink-0 px-2.5 py-1.5 text-[11px] sm:text-xs font-medium rounded-full border transition-colors active:scale-95 ${
                   quickFilter === "new"
                     ? "border-red-600 text-red-600 bg-red-50"
                     : "border-gray-200 text-gray-500 hover:border-gray-300"
@@ -158,7 +158,7 @@ function ShopContent() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="flex-shrink-0 text-[10px] sm:text-[11px] border border-gray-200 rounded px-1.5 sm:px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-red-500 bg-white"
+              className="flex-shrink-0 text-xs border border-gray-200 rounded px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-red-500 bg-white"
             >
               <option value="featured">Featured</option>
               <option value="popular">Popular</option>
