@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import ProductCard from "@/components/ProductCard";
@@ -16,7 +16,20 @@ function ShopContent() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100]);
   const [sortBy, setSortBy] = useState(sortParam || "featured");
   const [quickFilter, setQuickFilter] = useState<string>("");
-  const [searchQuery] = useState(searchParam);
+  const [searchQuery, setSearchQuery] = useState(searchParam);
+
+  // Sync state with URL params when they change
+  useEffect(() => {
+    setSelectedCategory(categoryParam);
+  }, [categoryParam]);
+
+  useEffect(() => {
+    if (sortParam) setSortBy(sortParam);
+  }, [sortParam]);
+
+  useEffect(() => {
+    setSearchQuery(searchParam);
+  }, [searchParam]);
 
   const priceFilters = [
     { label: "All", range: [0, 100] as [number, number] },
