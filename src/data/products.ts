@@ -1,5 +1,6 @@
 import { Product } from "@/types";
 import { newProducts } from "./new-products";
+import { trendingProducts } from "./trending-products";
 
 const baseProducts: Product[] = [
   // ==================== SKINCARE ====================
@@ -1036,7 +1037,7 @@ const baseProducts: Product[] = [
   },
 ];
 
-export const products: Product[] = [...baseProducts, ...newProducts];
+export const products: Product[] = [...baseProducts, ...newProducts, ...trendingProducts];
 
 export const categories = [
   {
@@ -1045,7 +1046,7 @@ export const categories = [
     slug: "skincare",
     description: "Cleansers, serums, moisturizers & more",
     image: "/images/categories/skincare.svg",
-    productCount: 52,
+    productCount: 67,
   },
   {
     id: "haircare",
@@ -1053,7 +1054,7 @@ export const categories = [
     slug: "haircare",
     description: "Shampoos, oils, styling & protective care",
     image: "/images/categories/haircare.svg",
-    productCount: 52,
+    productCount: 62,
   },
   {
     id: "makeup",
@@ -1061,7 +1062,7 @@ export const categories = [
     slug: "makeup",
     description: "Foundation, lips, eyes & brush sets",
     image: "/images/categories/makeup.svg",
-    productCount: 52,
+    productCount: 72,
   },
   {
     id: "body-care",
@@ -1069,7 +1070,7 @@ export const categories = [
     slug: "body-care",
     description: "Lotions, scrubs, mists & deodorant",
     image: "/images/categories/bodycare.svg",
-    productCount: 39,
+    productCount: 48,
   },
   {
     id: "accessories",
@@ -1077,7 +1078,7 @@ export const categories = [
     slug: "accessories",
     description: "Tools, organizers, clips & sponges",
     image: "/images/categories/accessories.svg",
-    productCount: 47,
+    productCount: 53,
   },
 ];
 
