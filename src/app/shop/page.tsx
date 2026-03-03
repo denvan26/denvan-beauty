@@ -131,43 +131,8 @@ function ShopContent() {
             ))}
           </div>
 
-          {/* Quick filter chips + sort */}
-          <div className="flex items-center justify-between gap-2 pb-2 sm:pb-2.5">
-            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
-              {priceFilters.map((pf) => (
-                <button
-                  key={pf.label}
-                  onClick={() => setPriceRange(pf.range)}
-                  className={`flex-shrink-0 px-2.5 py-1.5 text-[11px] sm:text-xs font-medium rounded-full border transition-colors active:scale-95 ${
-                    priceRange[0] === pf.range[0] && priceRange[1] === pf.range[1]
-                      ? "border-red-600 text-red-600 bg-red-50"
-                      : "border-gray-200 text-gray-500 hover:border-gray-300"
-                  }`}
-                >
-                  {pf.label}
-                </button>
-              ))}
-              <button
-                onClick={() => setQuickFilter(quickFilter === "sale" ? "" : "sale")}
-                className={`flex-shrink-0 px-2.5 py-1.5 text-[11px] sm:text-xs font-medium rounded-full border transition-colors active:scale-95 ${
-                  quickFilter === "sale"
-                    ? "border-red-600 text-red-600 bg-red-50"
-                    : "border-gray-200 text-gray-500 hover:border-gray-300"
-                }`}
-              >
-                Sale
-              </button>
-              <button
-                onClick={() => setQuickFilter(quickFilter === "new" ? "" : "new")}
-                className={`flex-shrink-0 px-2.5 py-1.5 text-[11px] sm:text-xs font-medium rounded-full border transition-colors active:scale-95 ${
-                  quickFilter === "new"
-                    ? "border-red-600 text-red-600 bg-red-50"
-                    : "border-gray-200 text-gray-500 hover:border-gray-300"
-                }`}
-              >
-                New
-              </button>
-            </div>
+          {/* Sort dropdown */}
+          <div className="flex items-center justify-end pb-2 sm:pb-2.5">
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
