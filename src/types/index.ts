@@ -24,7 +24,9 @@ export type Category =
   | "haircare"
   | "makeup"
   | "body-care"
-  | "accessories";
+  | "accessories"
+  | "watches"
+  | "wigs";
 
 export interface CartItem {
   product: Product;

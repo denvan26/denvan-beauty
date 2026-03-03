@@ -20,6 +20,8 @@ export default function ProductCard({ product }: ProductCardProps) {
     makeup: "from-fuchsia-100 to-pink-50",
     "body-care": "from-teal-100 to-emerald-50",
     accessories: "from-amber-100 to-orange-50",
+    watches: "from-amber-100 to-yellow-50",
+    wigs: "from-rose-100 to-orange-50",
   };
 
   const gradient = categoryGradients[product.category] || "from-pink-50 to-purple-50";

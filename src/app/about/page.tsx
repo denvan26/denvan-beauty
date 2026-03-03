@@ -16,6 +16,33 @@ export default function AboutPage() {
       </section>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Vision & Mission */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-8">
+            <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </div>
+            <h2 className="text-2xl font-bold mb-3">Our Vision</h2>
+            <p className="text-gray-600 leading-relaxed">
+              To become the #1 destination for affordable, inclusive beauty — where everyone can discover premium quality products that celebrate their unique beauty, without compromise on price, quality, or values.
+            </p>
+          </div>
+          <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-8">
+            <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h2 className="text-2xl font-bold mb-3">Our Mission</h2>
+            <p className="text-gray-600 leading-relaxed">
+              Empowering everyone to look and feel their best by curating and delivering high-quality beauty products at honest prices. We believe beauty is for all — every skin tone, hair type, and budget deserves access to the best.
+            </p>
+          </div>
+        </div>
+
         {/* Brand Story */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold mb-6">Our Story</h2>
@@ -24,11 +51,36 @@ export default function AboutPage() {
               Denvan Beauty was born from a simple belief: everyone deserves access to high-quality beauty products without breaking the bank. We noticed a gap in the market — premium beauty at affordable prices, delivered with care and speed.
             </p>
             <p className="text-lg leading-relaxed">
-              Founded with a passion for clean, effective beauty, we curate and develop products that actually work. From skincare serums packed with active ingredients to haircare essentials for every texture, our collection is designed to celebrate and enhance your natural beauty.
+              Founded with a passion for clean, effective beauty, we curate and develop products that actually work. From skincare serums packed with active ingredients to haircare essentials for every texture, plus our newest collections of elegant women&apos;s watches and premium wigs — our growing catalog of 300+ products is designed to celebrate and enhance your natural beauty.
             </p>
             <p className="text-lg leading-relaxed">
               What sets us apart? Our commitment to same-day delivery in select areas means you don&apos;t have to wait to feel your best. We partner with DoorDash to bring your beauty essentials right to your door — often within hours.
             </p>
+          </div>
+        </div>
+
+        {/* Our Promise */}
+        <div className="bg-gradient-to-r from-black to-gray-800 rounded-2xl p-8 sm:p-10 mb-16 text-white">
+          <h2 className="text-2xl font-bold mb-6">Our Promise to You</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[
+              { title: "Quality First", desc: "Every product is tested and vetted before it reaches our shelves. If it doesn't meet our standards, we don't sell it." },
+              { title: "Honest Pricing", desc: "No hidden fees, no inflated markups. We price our products fairly so premium beauty is accessible to everyone." },
+              { title: "Fast Delivery", desc: "Same-day delivery in select areas. Standard orders ship within 24 hours because you shouldn't have to wait to feel beautiful." },
+              { title: "Satisfaction Guaranteed", desc: "Not happy? We'll make it right. Our customer support team is here to ensure you love every purchase." },
+            ].map((item) => (
+              <div key={item.title} className="flex gap-4">
+                <div className="flex-shrink-0 w-8 h-8 bg-pink-500 rounded-lg flex items-center justify-center mt-0.5">
+                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold mb-1">{item.title}</h3>
+                  <p className="text-sm text-gray-300 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -108,9 +160,9 @@ export default function AboutPage() {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 text-center">
           {[
-            { num: "40+", label: "Products" },
-            { num: "10K+", label: "Happy Customers" },
-            { num: "4.7", label: "Avg Rating" },
+            { num: "300+", label: "Products" },
+            { num: "15K+", label: "Happy Customers" },
+            { num: "4.8", label: "Avg Rating" },
             { num: "2-4hr", label: "Same-Day Delivery" },
           ].map((stat) => (
             <div key={stat.label}>
@@ -126,7 +178,7 @@ export default function AboutPage() {
             Ready to Experience Denvan Beauty?
           </h2>
           <p className="text-gray-600 mb-8 max-w-lg mx-auto">
-            Join thousands of beauty lovers who trust Denvan Beauty for their skincare, haircare, and makeup needs.
+            Join thousands of beauty lovers who trust Denvan Beauty for their skincare, haircare, makeup, watches, and wig needs.
           </p>
           <Link
             href="/shop"

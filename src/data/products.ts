@@ -1,6 +1,7 @@
 import { Product } from "@/types";
 import { newProducts } from "./new-products";
 import { trendingProducts } from "./trending-products";
+import { watchesProducts, wigsProducts } from "./watches-wigs-products";
 
 const baseProducts: Product[] = [
   // ==================== SKINCARE ====================
@@ -1037,7 +1038,7 @@ const baseProducts: Product[] = [
   },
 ];
 
-export const products: Product[] = [...baseProducts, ...newProducts, ...trendingProducts];
+export const products: Product[] = [...baseProducts, ...newProducts, ...trendingProducts, ...watchesProducts, ...wigsProducts];
 
 export const categories = [
   {
@@ -1079,6 +1080,22 @@ export const categories = [
     description: "Tools, organizers, clips & sponges",
     image: "/images/categories/accessories.svg",
     productCount: 53,
+  },
+  {
+    id: "watches",
+    name: "Watches",
+    slug: "watches",
+    description: "Elegant timepieces for every occasion",
+    image: "/images/categories/watches.svg",
+    productCount: 50,
+  },
+  {
+    id: "wigs",
+    name: "Wigs",
+    slug: "wigs",
+    description: "Premium wigs, extensions & hair pieces",
+    image: "/images/categories/wigs.svg",
+    productCount: 20,
   },
 ];
 
