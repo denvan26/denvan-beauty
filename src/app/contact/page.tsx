@@ -72,7 +72,15 @@ export default function ContactPage() {
                 ].map((social) => (
                   <a
                     key={social.name}
-                    href="#"
+                    href={
+                      social.name === "Instagram"
+                        ? "https://instagram.com/denvanbeauty"
+                        : social.name === "TikTok"
+                        ? "https://tiktok.com/@denvanbeauty"
+                        : "https://facebook.com/denvanbeauty"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-pink-500 hover:text-white transition-colors"
                     aria-label={social.name}
                   >

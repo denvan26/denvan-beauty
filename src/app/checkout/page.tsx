@@ -8,10 +8,32 @@ export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCart();
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [promoCode, setPromoCode] = useState("");
+  const [promoApplied, setPromoApplied] = useState<{ code: string; discount: number } | null>(null);
+  const [promoError, setPromoError] = useState("");
 
-  const shipping = totalPrice >= 50 ? 0 : 5.99;
-  const tax = totalPrice * 0.08;
-  const orderTotal = totalPrice + shipping + tax;
+  const promoCodes: Record<string, { discount: number; label: string }> = {
+    WELCOME15: { discount: 0.15, label: "15% off" },
+    GLOW10: { discount: 0.10, label: "10% off" },
+    BEAUTY20: { discount: 0.20, label: "20% off" },
+  };
+
+  const handlePromoApply = () => {
+    const code = promoCode.trim().toUpperCase();
+    if (promoCodes[code]) {
+      setPromoApplied({ code, discount: promoCodes[code].discount });
+      setPromoError("");
+    } else {
+      setPromoError("Invalid promo code");
+      setPromoApplied(null);
+    }
+  };
+
+  const discountAmount = promoApplied ? totalPrice * promoApplied.discount : 0;
+  const subtotalAfterDiscount = totalPrice - discountAmount;
+  const shipping = subtotalAfterDiscount >= 50 ? 0 : 5.99;
+  const tax = subtotalAfterDiscount * 0.08;
+  const orderTotal = subtotalAfterDiscount + shipping + tax;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -293,16 +315,38 @@ export default function CheckoutPage() {
                 <div className="flex gap-2">
                   <input
                     type="text"
+                    value={promoCode}
+                    onChange={(e) => { setPromoCode(e.target.value); setPromoError(""); }}
                     placeholder="Promo code"
                     className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                    disabled={!!promoApplied}
                   />
-                  <button
-                    type="button"
-                    className="px-4 py-2 bg-gray-200 text-gray-700 font-medium text-sm rounded-lg hover:bg-gray-300 transition-colors"
-                  >
-                    Apply
-                  </button>
+                  {promoApplied ? (
+                    <button
+                      type="button"
+                      onClick={() => { setPromoApplied(null); setPromoCode(""); }}
+                      className="px-4 py-2 bg-red-100 text-red-600 font-medium text-sm rounded-lg hover:bg-red-200 transition-colors"
+                    >
+                      Remove
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={handlePromoApply}
+                      className="px-4 py-2 bg-gray-200 text-gray-700 font-medium text-sm rounded-lg hover:bg-gray-300 transition-colors"
+                    >
+                      Apply
+                    </button>
+                  )}
                 </div>
+                {promoError && (
+                  <p className="text-xs text-red-500 mt-1.5">{promoError}</p>
+                )}
+                {promoApplied && (
+                  <p className="text-xs text-green-600 mt-1.5 font-medium">
+                    {promoCodes[promoApplied.code].label} applied — you save ${discountAmount.toFixed(2)}!
+                  </p>
+                )}
               </div>
 
               <div className="space-y-2 text-sm mb-4">
@@ -310,6 +354,12 @@ export default function CheckoutPage() {
                   <span className="text-gray-600">Subtotal</span>
                   <span>${totalPrice.toFixed(2)}</span>
                 </div>
+                {promoApplied && (
+                  <div className="flex justify-between text-green-600">
+                    <span>Discount ({promoCodes[promoApplied.code].label})</span>
+                    <span>-${discountAmount.toFixed(2)}</span>
+                  </div>
+                )}
                 <div className="flex justify-between">
                   <span className="text-gray-600">Shipping</span>
                   <span>{shipping === 0 ? <span className="text-green-600">FREE</span> : `$${shipping.toFixed(2)}`}</span>

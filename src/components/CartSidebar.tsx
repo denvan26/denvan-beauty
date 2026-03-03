@@ -91,7 +91,8 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                         onClick={() =>
                           updateQuantity(item.product.id, item.quantity + 1)
                         }
-                        className="w-7 h-7 rounded border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                        className="w-7 h-7 rounded border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed"
+                        disabled={item.quantity >= 10}
                       >
                         +
                       </button>

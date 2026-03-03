@@ -170,8 +170,9 @@ export default function ProductDetail({ slug }: { slug: string }) {
                 {quantity}
               </span>
               <button
-                onClick={() => setQuantity(quantity + 1)}
-                className="w-12 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                onClick={() => setQuantity(Math.min(10, quantity + 1))}
+                className="w-12 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed"
+                disabled={quantity >= 10}
               >
                 +
               </button>
