@@ -2,9 +2,10 @@
 
 @theme inline {
   --font-sans: var(--font-inter);
-  --color-pink-500: #ec4899;
-  --color-pink-600: #db2777;
-  --color-pink-50: #fdf2f8;
+  --color-deal-red: #e1251b;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-50: #fef2f2;
 }
 
 html {
@@ -60,6 +61,34 @@ body {
   animation: marquee 30s linear infinite;
 }
 
+/* Flash sale countdown pulse */
+@keyframes countdown-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.animate-countdown-pulse {
+  animation: countdown-pulse 1s ease-in-out infinite;
+}
+
+/* Flash sale badge blink */
+@keyframes flash-badge {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-flash-badge {
+  animation: flash-badge 2s ease-in-out infinite;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Hide scrollbar for category strip */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
@@ -68,4 +97,3 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-

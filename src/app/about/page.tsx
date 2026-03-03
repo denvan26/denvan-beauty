@@ -4,7 +4,7 @@ export default function AboutPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-pink-50 to-purple-50 py-16 sm:py-24">
+      <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-16 sm:py-24">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
             About Denvan Beauty
@@ -18,9 +18,9 @@ export default function AboutPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Vision & Mission */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-8">
-            <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-2xl p-8">
+            <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
               </svg>
@@ -70,7 +70,7 @@ export default function AboutPage() {
               { title: "Satisfaction Guaranteed", desc: "Not happy? We'll make it right. Our customer support team is here to ensure you love every purchase." },
             ].map((item) => (
               <div key={item.title} className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-pink-500 rounded-lg flex items-center justify-center mt-0.5">
+                <div className="flex-shrink-0 w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center mt-0.5">
                   <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>
@@ -121,8 +121,8 @@ export default function AboutPage() {
               },
             ].map((value) => (
               <div key={value.title} className="text-center p-6">
-                <div className="w-14 h-14 bg-pink-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-7 h-7 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-7 h-7 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={value.icon} />
                   </svg>
                 </div>
@@ -166,7 +166,7 @@ export default function AboutPage() {
             { num: "2-4hr", label: "Same-Day Delivery" },
           ].map((stat) => (
             <div key={stat.label}>
-              <div className="text-3xl sm:text-4xl font-bold text-pink-500">{stat.num}</div>
+              <div className="text-3xl sm:text-4xl font-bold text-red-500">{stat.num}</div>
               <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
             </div>
           ))}

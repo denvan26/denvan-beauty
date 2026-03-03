@@ -72,7 +72,7 @@ export default function CheckoutPage() {
         <h1 className="text-2xl font-bold mb-4">Your cart is empty</h1>
         <Link
           href="/shop"
-          className="text-pink-500 font-semibold hover:text-pink-600"
+          className="text-red-500 font-semibold hover:text-red-600"
         >
           Go to Shop
         </Link>
@@ -99,7 +99,7 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                     placeholder="Jane"
                   />
                 </div>
@@ -110,7 +110,7 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                     placeholder="Doe"
                   />
                 </div>
@@ -121,7 +121,7 @@ export default function CheckoutPage() {
                   <input
                     type="email"
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                     placeholder="jane@example.com"
                   />
                 </div>
@@ -132,7 +132,7 @@ export default function CheckoutPage() {
                   <input
                     type="tel"
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                     placeholder="(555) 123-4567"
                   />
                 </div>
@@ -150,7 +150,7 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                     placeholder="123 Beauty Lane"
                   />
                 </div>
@@ -160,7 +160,7 @@ export default function CheckoutPage() {
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                     placeholder="Apt 4B"
                   />
                 </div>
@@ -171,7 +171,7 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                     placeholder="Los Angeles"
                   />
                 </div>
@@ -182,7 +182,7 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                     placeholder="CA"
                   />
                 </div>
@@ -193,7 +193,7 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                     placeholder="90001"
                   />
                 </div>
@@ -201,7 +201,7 @@ export default function CheckoutPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Country
                   </label>
-                  <select className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm bg-white">
+                  <select className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm bg-white">
                     <option>United States</option>
                     <option>Canada</option>
                   </select>
@@ -224,7 +224,7 @@ export default function CheckoutPage() {
                     key={method.id}
                     className={`flex items-center gap-3 p-4 border rounded-xl cursor-pointer transition-all ${
                       paymentMethod === method.id
-                        ? "border-pink-500 bg-pink-50"
+                        ? "border-red-500 bg-red-50"
                         : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
@@ -234,7 +234,7 @@ export default function CheckoutPage() {
                       value={method.id}
                       checked={paymentMethod === method.id}
                       onChange={(e) => setPaymentMethod(e.target.value)}
-                      className="w-4 h-4 text-pink-500 focus:ring-pink-500"
+                      className="w-4 h-4 text-red-500 focus:ring-red-500"
                     />
                     <div>
                       <span className="text-sm font-medium">{method.label}</span>
@@ -252,7 +252,7 @@ export default function CheckoutPage() {
                     </label>
                     <input
                       type="text"
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                       placeholder="4242 4242 4242 4242"
                     />
                   </div>
@@ -263,7 +263,7 @@ export default function CheckoutPage() {
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                         placeholder="MM/YY"
                       />
                     </div>
@@ -273,7 +273,7 @@ export default function CheckoutPage() {
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                        className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
                         placeholder="123"
                       />
                     </div>
@@ -318,7 +318,7 @@ export default function CheckoutPage() {
                     value={promoCode}
                     onChange={(e) => { setPromoCode(e.target.value); setPromoError(""); }}
                     placeholder="Promo code"
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
                     disabled={!!promoApplied}
                   />
                   {promoApplied ? (

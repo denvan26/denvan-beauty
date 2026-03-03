@@ -18,7 +18,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
         <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
-        <Link href="/shop" className="text-pink-500 font-semibold hover:text-pink-600">
+        <Link href="/shop" className="text-red-600 font-semibold hover:text-red-700">
           Back to Shop
         </Link>
       </div>
@@ -27,9 +27,12 @@ export default function ProductDetail({ slug }: { slug: string }) {
 
   const relatedProducts = products
     .filter((p) => p.category === product.category && p.id !== product.id)
-    .slice(0, 5);
+    .slice(0, 6);
 
   const productReviews = reviews.slice(0, 4);
+
+  const viewingCount = Math.floor(Math.random() * 40) + 15;
+  const soldCount = Math.floor(Math.random() * 200) + 50;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -50,7 +53,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
         {/* Images */}
         <div className="space-y-4">
-          <div className="relative aspect-square bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl overflow-hidden">
+          <div className="relative aspect-square bg-gray-100 overflow-hidden">
             {!imgError ? (
               <Image
                 src={product.images[0]}
@@ -63,16 +66,16 @@ export default function ProductDetail({ slug }: { slug: string }) {
               />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-gray-500 text-lg font-medium bg-white/70 px-6 py-3 rounded-xl">{product.name}</span>
+                <span className="text-gray-500 text-lg font-medium bg-white/70 px-6 py-3">{product.name}</span>
               </div>
             )}
             {product.badge && (
-              <span className="absolute top-4 left-4 bg-black text-white text-xs font-bold px-4 py-1.5 rounded-full">
+              <span className="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-4 py-1.5">
                 {product.badge}
               </span>
             )}
             {product.sameDayDelivery && (
-              <span className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+              <span className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1.5">
                 SAME-DAY
               </span>
             )}
@@ -81,32 +84,20 @@ export default function ProductDetail({ slug }: { slug: string }) {
 
         {/* Product Info */}
         <div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             {product.name}
           </h1>
 
-          {/* Rating */}
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex text-yellow-400">
-              {[...Array(5)].map((_, i) => (
-                <svg
-                  key={i}
-                  className={`w-5 h-5 ${i < Math.floor(product.rating) ? "text-yellow-400" : "text-gray-200"}`}
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-            <span className="text-sm text-gray-500">
-              {product.rating} ({product.reviewCount} reviews)
-            </span>
+          {/* Social proof */}
+          <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
+            <span>{product.rating} ({product.reviewCount} reviews)</span>
+            <span className="text-red-600 font-medium">{viewingCount} people viewing</span>
+            <span className="text-orange-600 font-medium">{soldCount} sold in 24h</span>
           </div>
 
           {/* Price */}
           <div className="flex items-center gap-3 mb-6">
-            <span className="text-3xl font-bold text-gray-900">
+            <span className="text-3xl font-bold text-red-600">
               ${product.price.toFixed(2)}
               {product.priceMax && ` - $${product.priceMax.toFixed(2)}`}
             </span>
@@ -115,15 +106,15 @@ export default function ProductDetail({ slug }: { slug: string }) {
                 <span className="text-xl text-gray-400 line-through">
                   ${product.originalPrice.toFixed(2)}
                 </span>
-                <span className="text-sm font-bold text-red-500 bg-red-50 px-2 py-1 rounded">
-                  SAVE {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                <span className="text-sm font-bold text-white bg-red-600 px-2 py-1">
+                  -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
                 </span>
               </>
             )}
           </div>
 
           {/* Description */}
-          <p className="text-gray-600 leading-relaxed mb-6">
+          <p className="text-gray-600 leading-relaxed mb-6 text-sm">
             {product.description}
           </p>
 
@@ -146,7 +137,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
 
           {/* Delivery Badge */}
           {product.sameDayDelivery && (
-            <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6 flex items-center gap-3">
+            <div className="bg-green-50 border border-green-200 p-4 mb-6 flex items-center gap-3">
               <svg className="w-6 h-6 text-green-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -158,8 +149,8 @@ export default function ProductDetail({ slug }: { slug: string }) {
           )}
 
           {/* Quantity & Add to Cart */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
-            <div className="flex items-center border border-gray-200 rounded-lg">
+          <div className="flex flex-col sm:flex-row gap-4 mb-4">
+            <div className="flex items-center border border-gray-200">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 className="w-12 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-100"
@@ -179,7 +170,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
             </div>
             <button
               onClick={() => addToCart(product, quantity)}
-              className="flex-1 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition-colors text-sm"
+              className="flex-1 py-3 bg-red-600 text-white font-bold hover:bg-red-700 transition-colors text-sm"
             >
               Add to Cart — ${(product.price * quantity).toFixed(2)}
             </button>
@@ -188,7 +179,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
           <Link
             href="/checkout"
             onClick={() => addToCart(product, quantity)}
-            className="block w-full text-center py-3 bg-pink-500 text-white font-bold rounded-lg hover:bg-pink-600 transition-colors text-sm mb-6"
+            className="block w-full text-center py-3 bg-black text-white font-bold hover:bg-gray-900 transition-colors text-sm mb-6"
           >
             Buy Now
           </Link>
@@ -224,7 +215,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
               onClick={() => setActiveTab(tab.key)}
               className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === tab.key
-                  ? "border-black text-black"
+                  ? "border-red-600 text-red-600"
                   : "border-transparent text-gray-500 hover:text-black"
               }`}
             >
@@ -286,8 +277,8 @@ export default function ProductDetail({ slug }: { slug: string }) {
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <div className="mb-16">
-          <h2 className="text-2xl font-bold mb-8">You May Also Like</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+          <h2 className="text-lg font-bold mb-4">People Also Bought</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-1 sm:gap-2">
             {relatedProducts.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

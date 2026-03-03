@@ -50,7 +50,7 @@ export default function CartPage() {
               >
                 {/* Product */}
                 <div className="sm:col-span-6 flex gap-4">
-                  <div className="relative w-24 h-24 bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl overflow-hidden flex-shrink-0">
+                  <div className="relative w-24 h-24 bg-gradient-to-br bg-gray-100 overflow-hidden flex-shrink-0">
                     <Image
                       src={item.product.images[0]}
                       alt={item.product.name}
@@ -62,7 +62,7 @@ export default function CartPage() {
                   <div>
                     <Link
                       href={`/product/${item.product.slug}`}
-                      className="font-medium text-gray-900 hover:text-pink-500 transition-colors"
+                      className="font-medium text-gray-900 hover:text-red-500 transition-colors"
                     >
                       {item.product.name}
                     </Link>
@@ -165,7 +165,7 @@ export default function CartPage() {
                   <span className="font-medium">${tax.toFixed(2)}</span>
                 </div>
                 {shipping > 0 && (
-                  <p className="text-xs text-pink-500">
+                  <p className="text-xs text-red-500">
                     Add ${(50 - totalPrice).toFixed(2)} more for free shipping!
                   </p>
                 )}
@@ -177,7 +177,7 @@ export default function CartPage() {
                   <input
                     type="text"
                     placeholder="Promo code"
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
                   />
                   <button className="px-4 py-2 bg-gray-200 text-gray-700 font-medium text-sm rounded-lg hover:bg-gray-300 transition-colors">
                     Apply

@@ -24,6 +24,11 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
 
       {/* Sidebar */}
       <div className="fixed right-0 top-0 h-full w-full sm:w-96 bg-white z-50 shadow-xl flex flex-col">
+        {/* Coupon banner */}
+        <div className="bg-red-600 text-white text-center text-xs py-2 px-4 font-medium">
+          Use code <span className="font-bold">WELCOME15</span> for 15% off
+        </div>
+
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b">
           <h2 className="text-lg font-bold">
@@ -50,7 +55,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
               <p className="text-gray-500 mb-4">Your cart is empty</p>
               <button
                 onClick={onClose}
-                className="text-pink-500 font-semibold hover:text-pink-600"
+                className="text-red-600 font-semibold hover:text-red-700"
               >
                 Continue Shopping
               </button>
@@ -59,7 +64,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
             <div className="space-y-4">
               {items.map((item) => (
                 <div key={item.product.id} className="flex gap-4 py-3 border-b border-gray-100">
-                  <div className="relative w-20 h-20 bg-gradient-to-br from-pink-50 to-purple-50 rounded-lg flex-shrink-0 overflow-hidden">
+                  <div className="relative w-20 h-20 bg-gray-100 flex-shrink-0 overflow-hidden">
                     <Image
                       src={item.product.images[0]}
                       alt={item.product.name}
@@ -72,7 +77,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
                     <h3 className="text-sm font-medium text-gray-900 truncate">
                       {item.product.name}
                     </h3>
-                    <p className="text-sm font-bold text-pink-500 mt-1">
+                    <p className="text-sm font-bold text-red-600 mt-1">
                       ${item.product.price.toFixed(2)}
                     </p>
                     <div className="flex items-center mt-2 space-x-2">
@@ -130,7 +135,7 @@ export default function CartSidebar({ open, onClose }: CartSidebarProps) {
             <Link
               href="/checkout"
               onClick={onClose}
-              className="block w-full text-center py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-900 transition-colors"
+              className="block w-full text-center py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors"
             >
               Checkout
             </Link>

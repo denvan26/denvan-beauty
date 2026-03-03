@@ -8,7 +8,7 @@ export default function BlogPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-pink-50 to-purple-50 py-16">
+      <section className="bg-gray-50 py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
             Beauty Tips & Guides
@@ -22,9 +22,9 @@ export default function BlogPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Featured Post */}
         <div className="mb-16">
-          <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl overflow-hidden">
+          <div className="bg-gray-50 rounded-2xl overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="relative aspect-[4/3] md:aspect-auto bg-gradient-to-br from-pink-100 to-purple-100">
+              <div className="relative aspect-[4/3] md:aspect-auto bg-gray-100">
                 <Image
                   src={blogPosts[0].image}
                   alt={blogPosts[0].title}
@@ -34,14 +34,14 @@ export default function BlogPage() {
                 />
               </div>
               <div className="p-8 flex flex-col justify-center">
-                <span className="text-xs font-bold text-pink-500 uppercase tracking-wider mb-2">
+                <span className="text-xs font-bold text-red-500 uppercase tracking-wider mb-2">
                   {blogPosts[0].category}
                 </span>
                 <h2 className="text-2xl font-bold mb-3">{blogPosts[0].title}</h2>
                 <p className="text-gray-600 mb-4">{blogPosts[0].excerpt}</p>
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-gray-400">{blogPosts[0].date}</span>
-                  <span className="text-sm font-semibold text-pink-500 hover:text-pink-600 cursor-pointer">
+                  <span className="text-sm font-semibold text-red-500 hover:text-red-600 cursor-pointer">
                     Read More &rarr;
                   </span>
                 </div>
@@ -57,7 +57,7 @@ export default function BlogPage() {
               key={post.id}
               className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
             >
-              <div className="relative aspect-[16/10] bg-gradient-to-br from-pink-50 to-purple-50">
+              <div className="relative aspect-[16/10] bg-gray-50">
                 <Image
                   src={post.image}
                   alt={post.title}
@@ -67,10 +67,10 @@ export default function BlogPage() {
                 />
               </div>
               <div className="p-6">
-                <span className="text-xs font-bold text-pink-500 uppercase tracking-wider">
+                <span className="text-xs font-bold text-red-500 uppercase tracking-wider">
                   {post.category}
                 </span>
-                <h3 className="text-lg font-bold mt-2 mb-2 group-hover:text-pink-500 transition-colors">
+                <h3 className="text-lg font-bold mt-2 mb-2 group-hover:text-red-500 transition-colors">
                   {post.title}
                 </h3>
                 <p className="text-sm text-gray-600 mb-4 line-clamp-2">
@@ -78,7 +78,7 @@ export default function BlogPage() {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-gray-400">{post.date}</span>
-                  <span className="text-sm font-semibold text-pink-500 group-hover:text-pink-600">
+                  <span className="text-sm font-semibold text-red-500 group-hover:text-red-600">
                     Read More &rarr;
                   </span>
                 </div>

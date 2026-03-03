@@ -65,7 +65,7 @@ export default function DeliveryPage() {
               </svg>
               <h3 className="text-lg font-bold mb-1">{option.title}</h3>
               <p className="text-sm text-gray-500 mb-1">{option.time}</p>
-              <p className="text-lg font-bold text-pink-500 mb-3">{option.price}</p>
+              <p className="text-lg font-bold text-red-500 mb-3">{option.price}</p>
               <p className="text-sm text-gray-600">{option.desc}</p>
             </div>
           ))}
@@ -159,9 +159,9 @@ export default function DeliveryPage() {
         </div>
 
         {/* CTA */}
-        <div className="text-center bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl py-12 px-8 text-white">
+        <div className="text-center bg-gradient-to-r from-red-600 to-red-500 rounded-2xl py-12 px-8 text-white">
           <h2 className="text-3xl font-bold mb-3">Ready to Try Same-Day Delivery?</h2>
-          <p className="text-pink-100 mb-6 max-w-lg mx-auto">
+          <p className="text-red-100 mb-6 max-w-lg mx-auto">
             Shop now and get your beauty essentials delivered right to your door today.
           </p>
           <Link
