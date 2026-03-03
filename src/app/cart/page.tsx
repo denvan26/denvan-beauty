@@ -57,14 +57,7 @@ export default function CartPage() {
                       fill
                       className="object-cover"
                       sizes="96px"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = "none";
-                      }}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-xs text-center p-1">
-                      {item.product.name}
-                    </div>
                   </div>
                   <div>
                     <Link

@@ -31,14 +31,7 @@ export default function BlogPage() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = "none";
-                  }}
                 />
-                <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-sm">
-                  <span className="bg-white/80 px-4 py-2 rounded-lg">Featured Post</span>
-                </div>
               </div>
               <div className="p-8 flex flex-col justify-center">
                 <span className="text-xs font-bold text-pink-500 uppercase tracking-wider mb-2">
@@ -71,14 +64,7 @@ export default function BlogPage() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = "none";
-                  }}
                 />
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">
-                  <span className="bg-white/80 px-3 py-1.5 rounded-lg">{post.category}</span>
-                </div>
               </div>
               <div className="p-6">
                 <span className="text-xs font-bold text-pink-500 uppercase tracking-wider">

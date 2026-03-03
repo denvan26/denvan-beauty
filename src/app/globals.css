@@ -50,19 +50,3 @@ body {
   animation: slideIn 0.4s ease-out;
 }
 
-/* Product image placeholder gradients */
-.product-gradient-skincare {
-  background: linear-gradient(135deg, #fce4ec, #f8bbd0, #f48fb1);
-}
-.product-gradient-haircare {
-  background: linear-gradient(135deg, #e8eaf6, #c5cae9, #9fa8da);
-}
-.product-gradient-makeup {
-  background: linear-gradient(135deg, #fce4ec, #f3e5f5, #e1bee7);
-}
-.product-gradient-body-care {
-  background: linear-gradient(135deg, #e0f2f1, #b2dfdb, #80cbc4);
-}
-.product-gradient-accessories {
-  background: linear-gradient(135deg, #fff3e0, #ffe0b2, #ffcc80);
-}

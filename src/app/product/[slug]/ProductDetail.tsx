@@ -12,6 +12,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<"description" | "ingredients" | "reviews">("description");
+  const [imgError, setImgError] = useState(false);
 
   if (!product) {
     return (
@@ -50,21 +51,21 @@ export default function ProductDetail({ slug }: { slug: string }) {
         {/* Images */}
         <div className="space-y-4">
           <div className="relative aspect-square bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl overflow-hidden">
-            <Image
-              src={product.images[0]}
-              alt={product.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = "none";
-              }}
-            />
-            <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-lg pointer-events-none">
-              <span className="bg-white/80 px-6 py-3 rounded-xl font-medium">{product.name}</span>
-            </div>
+            {!imgError ? (
+              <Image
+                src={product.images[0]}
+                alt={product.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-gray-500 text-lg font-medium bg-white/70 px-6 py-3 rounded-xl">{product.name}</span>
+              </div>
+            )}
             {product.badge && (
               <span className="absolute top-4 left-4 bg-black text-white text-xs font-bold px-4 py-1.5 rounded-full">
                 {product.badge}

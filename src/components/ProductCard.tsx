@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { Product } from "@/types";
 import { useCart } from "@/lib/CartContext";
 
@@ -11,26 +12,41 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
+  const [imgError, setImgError] = useState(false);
+
+  const categoryGradients: Record<string, string> = {
+    skincare: "from-pink-100 to-rose-50",
+    haircare: "from-indigo-100 to-purple-50",
+    makeup: "from-fuchsia-100 to-pink-50",
+    "body-care": "from-teal-100 to-emerald-50",
+    accessories: "from-amber-100 to-orange-50",
+  };
+
+  const gradient = categoryGradients[product.category] || "from-pink-50 to-purple-50";
 
   return (
     <div className="group relative bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       {/* Image */}
-      <Link href={`/product/${product.slug}`} className="block relative aspect-square bg-gradient-to-br from-pink-50 to-purple-50 overflow-hidden">
-        <Image
-          src={product.images[0]}
-          alt={product.name}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.style.display = "none";
-          }}
-        />
-        {/* Placeholder text for when image doesn't load */}
-        <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm text-center p-4 pointer-events-none">
-          <span className="bg-white/80 px-3 py-2 rounded-lg">{product.name}</span>
-        </div>
+      <Link
+        href={`/product/${product.slug}`}
+        className={`block relative aspect-square bg-gradient-to-br ${gradient} overflow-hidden`}
+      >
+        {!imgError ? (
+          <Image
+            src={product.images[0]}
+            alt={product.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center p-4">
+            <span className="text-gray-500 text-sm font-medium text-center bg-white/70 px-4 py-2 rounded-xl">
+              {product.name}
+            </span>
+          </div>
+        )}
 
         {/* Badge */}
         {product.badge && (
