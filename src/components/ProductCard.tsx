@@ -22,6 +22,8 @@ export default function ProductCard({ product }: ProductCardProps) {
     accessories: "from-amber-100 to-orange-50",
     watches: "from-amber-100 to-yellow-50",
     wigs: "from-rose-100 to-orange-50",
+    shoes: "from-sky-100 to-blue-50",
+    clothes: "from-violet-100 to-purple-50",
   };
 
   const gradient = categoryGradients[product.category] || "from-pink-50 to-purple-50";

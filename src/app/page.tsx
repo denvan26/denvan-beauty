@@ -8,7 +8,7 @@ import { categories, reviews } from "@/data/products";
 const heroSlides = [
   {
     title: "Your Beauty, Your Rules",
-    subtitle: "300+ premium products across skincare, haircare, makeup, watches & wigs — all at prices you'll love",
+    subtitle: "400+ premium products across skincare, makeup, shoes, clothes & more — all at prices you'll love",
     cta: "Shop Now",
     link: "/shop",
     bg: "from-pink-100 via-pink-50 to-white",
@@ -39,9 +39,9 @@ const heroSlides = [
 const marqueeItems = [
   "FREE SHIPPING ON ORDERS $50+",
   "SAME-DAY DELIVERY AVAILABLE",
-  "NEW: 50 WOMEN'S WATCHES JUST DROPPED",
-  "NEW: PREMIUM WIGS COLLECTION",
-  "300+ PRODUCTS & COUNTING",
+  "NEW: SHOES & CLOTHES COLLECTIONS",
+  "400+ PRODUCTS & COUNTING",
+  "WATCHES, WIGS & MORE",
   "CRUELTY-FREE & CLEAN BEAUTY",
 ];
 
@@ -150,6 +150,8 @@ export default function Home() {
               { label: "Accessories", href: "/shop?category=accessories", color: "bg-amber-50 text-amber-700 hover:bg-amber-100" },
               { label: "Watches", href: "/shop?category=watches", color: "bg-yellow-50 text-yellow-700 hover:bg-yellow-100" },
               { label: "Wigs", href: "/shop?category=wigs", color: "bg-rose-50 text-rose-700 hover:bg-rose-100" },
+              { label: "Shoes", href: "/shop?category=shoes", color: "bg-sky-50 text-sky-700 hover:bg-sky-100" },
+              { label: "Clothes", href: "/shop?category=clothes", color: "bg-violet-50 text-violet-700 hover:bg-violet-100" },
             ].map((cat) => (
               <Link
                 key={cat.label}
@@ -336,7 +338,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { num: "300+", label: "Products" },
+              { num: "400+", label: "Products" },
               { num: "15K+", label: "Happy Customers" },
               { num: "4.8", label: "Avg Rating" },
               { num: "2-4hr", label: "Same-Day Delivery" },
@@ -430,7 +432,7 @@ export default function Home() {
             Ready to Glow?
           </h2>
           <p className="text-pink-100 text-lg mb-8 max-w-xl mx-auto">
-            Discover 300+ affordable, cruelty-free beauty products that actually work. Free shipping on orders over $50.
+            Discover 400+ affordable, cruelty-free beauty products that actually work. Free shipping on orders over $50.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link

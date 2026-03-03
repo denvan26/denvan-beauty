@@ -2,6 +2,7 @@ import { Product } from "@/types";
 import { newProducts } from "./new-products";
 import { trendingProducts } from "./trending-products";
 import { watchesProducts, wigsProducts } from "./watches-wigs-products";
+import { shoesProducts, clothesProducts } from "./shoes-clothes-products";
 
 const baseProducts: Product[] = [
   // ==================== SKINCARE ====================
@@ -1038,7 +1039,7 @@ const baseProducts: Product[] = [
   },
 ];
 
-export const products: Product[] = [...baseProducts, ...newProducts, ...trendingProducts, ...watchesProducts, ...wigsProducts];
+export const products: Product[] = [...baseProducts, ...newProducts, ...trendingProducts, ...watchesProducts, ...wigsProducts, ...shoesProducts, ...clothesProducts];
 
 export const categories = [
   {
@@ -1096,6 +1097,22 @@ export const categories = [
     description: "Premium wigs, extensions & hair pieces",
     image: "/images/categories/wigs.svg",
     productCount: 20,
+  },
+  {
+    id: "shoes",
+    name: "Shoes",
+    slug: "shoes",
+    description: "Heels, sneakers, boots & sandals",
+    image: "/images/categories/shoes.svg",
+    productCount: 30,
+  },
+  {
+    id: "clothes",
+    name: "Clothes",
+    slug: "clothes",
+    description: "Dresses, tops, pants & sets",
+    image: "/images/categories/clothes.svg",
+    productCount: 30,
   },
 ];
 

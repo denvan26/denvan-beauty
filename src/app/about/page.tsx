@@ -51,7 +51,7 @@ export default function AboutPage() {
               Denvan Beauty was born from a simple belief: everyone deserves access to high-quality beauty products without breaking the bank. We noticed a gap in the market — premium beauty at affordable prices, delivered with care and speed.
             </p>
             <p className="text-lg leading-relaxed">
-              Founded with a passion for clean, effective beauty, we curate and develop products that actually work. From skincare serums packed with active ingredients to haircare essentials for every texture, plus our newest collections of elegant women&apos;s watches and premium wigs — our growing catalog of 300+ products is designed to celebrate and enhance your natural beauty.
+              Founded with a passion for clean, effective beauty, we curate and develop products that actually work. From skincare serums packed with active ingredients to haircare essentials for every texture, plus our newest collections of elegant women&apos;s watches and premium wigs — our growing catalog of 400+ products is designed to celebrate and enhance your natural beauty.
             </p>
             <p className="text-lg leading-relaxed">
               What sets us apart? Our commitment to same-day delivery in select areas means you don&apos;t have to wait to feel your best. We partner with DoorDash to bring your beauty essentials right to your door — often within hours.
@@ -160,7 +160,7 @@ export default function AboutPage() {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 text-center">
           {[
-            { num: "300+", label: "Products" },
+            { num: "400+", label: "Products" },
             { num: "15K+", label: "Happy Customers" },
             { num: "4.8", label: "Avg Rating" },
             { num: "2-4hr", label: "Same-Day Delivery" },
